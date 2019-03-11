@@ -14,4 +14,4 @@ after_success:
   - docker push rabrahams/multi-client
   - docker push rabrahams/multi-nginx
   - docker push rabrahams/multi-server
-  - docker push 
+  - docker push rabrahams/multi-worker
