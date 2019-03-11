@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t rabrahams/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run rabrahams/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t rabrahams/multi-client ./client
+  - docker build -t rabrahams/multi-nginx ./nginx
+  - docker build -t rabrahams/multi-server ./server
+  - docker build -t rabrahams/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push rabrahams/multi-client
+  - docker push rabrahams/multi-nginx
+  - docker push rabrahams/multi-server
+  - docker push rabrahams/multi-worker
