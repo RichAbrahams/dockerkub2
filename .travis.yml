@@ -7,6 +7,8 @@ script:
   - docker build -t rabrahams/multi-nginx ./nginx
   - docker build -t rabrahams/multi-server ./server
   - docker build -t rabrahams/multi-worker ./worker
+
+after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push rabrahams/multi-client:latest
   - docker push rabrahams/multi-nginx:latest
