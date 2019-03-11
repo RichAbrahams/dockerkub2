@@ -5,6 +5,9 @@ services:
 before_install:
   - docker build -t rabrahams/react-test -f ./client/Dockerfile.dev ./client
 
+script:
+  - docker run rabrahams/react-test npm test -- --coverage
+
 after_success:
   - docker build -t rabrahams/multi-client ./client
   - docker build -t rabrahams/multi-nginx ./nginx
