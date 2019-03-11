@@ -3,12 +3,12 @@ sudo: required
 services:
   - docker
 script:
-  - docker build -t rabrahams/multi-client ./client
-  - docker build -t rabrahams/multi-nginx ./nginx
-  - docker build -t rabrahams/multi-server ./server
-  - docker build -t rabrahams/multi-worker ./worker
+  - docker build -t richabrahams/multi-client ./client
+  - docker build -t richabrahams/multi-nginx ./nginx
+  - docker build -t richabrahams/multi-server ./server
+  - docker build -t richabrahams/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push rabrahams/multi-client
-  - docker push rabrahams/multi-nginx
-  - docker push rabrahams/multi-server
-  - docker push rabrahams/multi-worker
+  - docker push richabrahams/multi-client
+  - docker push richabrahams/multi-nginx
+  - docker push richabrahams/multi-server
+  - docker push richabrahams/multi-worker
